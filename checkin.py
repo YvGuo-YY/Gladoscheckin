@@ -18,7 +18,6 @@ if __name__ == '__main__':
 
     # glados账号cookie 直接使用数组 如果使用环境变量需要字符串分割一下
     cookies = os.environ.get("COOKIES", []).split("&")
-    requests.get(f'https://api.day.app/Mpnu2gSaCL3Kd9G99p4chn/{cookies}')
     if cookies[0] != "":
 
         check_in_url = "https://glados.space/api/user/checkin"  # 签到地址
@@ -89,5 +88,6 @@ if __name__ == '__main__':
 
     # 推送消息
     # pushdeer = PushDeer(pushkey=sckey)
-    requests.get(f'https://api.day.app/Mpnu2gSaCL3Kd9G99p4chn/{title}')
+    requests.get(f'{sckey}{title}')
+
 
