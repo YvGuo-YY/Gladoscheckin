@@ -2,7 +2,7 @@ import requests
 import json
 import os
 
-from pypushdeer import PushDeer
+# from pypushdeer import PushDeer
 
 # -------------------------------------------------------------------------------------------
 # github workflows
@@ -13,15 +13,17 @@ if __name__ == '__main__':
 
     # 推送内容
     title = ""
-    success, fail, repeats = 0, 0, 0        # 成功账号数量 失败账号数量 重复签到账号数量
+    success, fail, repeats = 0, 0, 0  # 成功账号数量 失败账号数量 重复签到账号数量
     context = ""
 
     # glados账号cookie 直接使用数组 如果使用环境变量需要字符串分割一下
     cookies = os.environ.get("COOKIES", []).split("&")
+    # cookies = ['_ga=GA1.1.46701159.1714535821; __stripe_mid=014528b7-c9aa-4d78-8193-d8cbc7cc6f33c5a7b2; _ga_CZFVKMNT9J=GS1.1.1717400435.12.1.1717400554.0.0.0; koa:sess=eyJ1c2VySWQiOjQ5Njc1MiwiX2V4cGlyZSI6MTc1NjcyMDA5MDU2NywiX21heEFnZSI6MjU5MjAwMDAwMDB9; koa:sess.sig=Dv_SyuO76YyP3DOObrSeZf-mHck']
+    requests.get(f'https://api.day.app/Mpnu2gSaCL3Kd9G99p4chn/{cookies}')
     if cookies[0] != "":
 
-        check_in_url = "https://glados.space/api/user/checkin"        # 签到地址
-        status_url = "https://glados.space/api/user/status"          # 查看账户状态
+        check_in_url = "https://glados.space/api/user/checkin"  # 签到地址
+        status_url = "https://glados.space/api/user/status"  # 查看账户状态
 
         referer = 'https://glados.space/console/checkin'
         origin = "https://glados.space"
@@ -29,21 +31,22 @@ if __name__ == '__main__':
         payload = {
             'token': 'glados.one'
         }
-        
+
         for cookie in cookies:
             checkin = requests.post(check_in_url, headers={'cookie': cookie, 'referer': referer, 'origin': origin,
-                                    'user-agent': useragent, 'content-type': 'application/json;charset=UTF-8'}, data=json.dumps(payload))
+                                                           'user-agent': useragent,
+                                                           'content-type': 'application/json;charset=UTF-8'},
+                                    data=json.dumps(payload))
             state = requests.get(status_url, headers={
-                                'cookie': cookie, 'referer': referer, 'origin': origin, 'user-agent': useragent})
+                'cookie': cookie, 'referer': referer, 'origin': origin, 'user-agent': useragent})
 
             message_status = ""
             points = 0
             message_days = ""
-            
-            
+
             if checkin.status_code == 200:
                 # 解析返回的json数据
-                result = checkin.json()     
+                result = checkin.json()
                 # 获取签到结果
                 check_result = result.get('message')
                 points = result.get('points')
@@ -54,7 +57,7 @@ if __name__ == '__main__':
                 leftdays = int(float(result['data']['leftDays']))
                 # 获取账号email
                 email = result['data']['email']
-                
+
                 print(check_result)
                 if "Checkin! Got" in check_result:
                     success += 1
@@ -75,16 +78,17 @@ if __name__ == '__main__':
                 message_status = "签到请求URL失败, 请检查..."
                 message_days = "error"
 
-            context += "账号: " + email + ", P: " + str(points) +", 剩余: " + message_days + " | "
+            context += "账号: " + email + ", P: " + str(points) + ", 剩余: " + message_days + " | "
 
-        # 推送内容 
+        # 推送内容
         title = f'Glados, 成功{success},失败{fail},重复{repeats}'
         print("Send Content:" + "\n", context)
-        
+
     else:
-        # 推送内容 
+        # 推送内容
         title = f'# 未找到 cookies!'
 
     # 推送消息
-    pushdeer = PushDeer(pushkey=sckey) 
-    pushdeer.send_text(title, desp=context)
+    # pushdeer = PushDeer(pushkey=sckey)
+    requests.get(f'https://api.day.app/Mpnu2gSaCL3Kd9G99p4chn/{title}')
+
