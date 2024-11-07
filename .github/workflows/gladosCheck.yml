@@ -41,7 +41,7 @@ jobs:
         python checkin.py
       env:
         # env获取
-        # SENDKEY: ${{ secrets.SENDKEY }}
+        SENDKEY: ${{ secrets.SENDKEY }}
         COOKIES: ${{ secrets.COOKIES }}
 
     - name: keep alive
