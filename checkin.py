@@ -93,5 +93,7 @@ if __name__ == '__main__':
     if not sckey:
         print("Not push")
     else:
-        pushdeer = PushDeer(pushkey=sckey) 
-        pushdeer.send_text(title, desp=context)
+        # pushdeer = PushDeer(pushkey=sckey) 
+        # pushdeer.send_text(title, desp=context)
+        requests.get(f'{sckey}{title}/{context}')
+
