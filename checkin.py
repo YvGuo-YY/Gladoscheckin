@@ -2,7 +2,7 @@ import requests
 import json
 import os
 
-from pypushdeer import PushDeer
+# from pypushdeer import PushDeer
 
 # -------------------------------------------------------------------------------------------
 # github workflows
