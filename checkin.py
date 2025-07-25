@@ -271,7 +271,9 @@ def send(msg):
     else:
         # pushdeer = PushDeer(pushkey=sckey)
         # pushdeer.send_text(title, desp=context)
-        requests.get(f'{sckey}{msg}')
+        context=f'{sckey}{msg}'
+        print(context)
+        requests.get(context)
 
 
 # from pypushdeer import PushDeer
