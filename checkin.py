@@ -19,10 +19,6 @@ def get_env():
         pass
         # 脚本退出
         # sys.exit(0)
-
-    cookie_list=[
-            'user=yvguo;kps=LuHy8wDz01gpt3RU3MtdyDNQpd7mVPQg3IKrlAI2EE00sh%2BJkC0WpaJ2kSfI%2FphkEnE2ekQc4SLE%2F70ItJDVvHauTm7QqYXHSnr6uTP1uNKDmw%3D%3D; sign=LuEHY97vPjMvTN6JqiQ2RCn8mT%2BwTPoPvcT6k3WdrIRoa9iM7xpYEEIXvBVfhkqyl4w%3D; vcode=1753462197971']
-
     return cookie_list
 
 # 其他代码...
@@ -152,6 +148,8 @@ def main():
     msg = ""
     global cookie_quark
     cookie_quark = get_env()
+    if len(cookie_quark)==0:
+        return "❌ 无可用账号！"
 
     i = 0
     while i < len(cookie_quark):
