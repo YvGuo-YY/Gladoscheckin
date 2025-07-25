@@ -43,6 +43,7 @@ jobs:
         # env获取
         SENDKEY: ${{ secrets.SENDKEY }}
         COOKIES: ${{ secrets.COOKIES }}
+        COOKIE_QUARK: ${{ secrets.COOKIE_QUARK }}
 
     - name: keep alive
       uses: liskin/gh-workflow-keepalive@v1 # using the workflow with default settings
