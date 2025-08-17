@@ -244,7 +244,7 @@ def checkin_glados():
                 message_status = "签到请求URL失败, 请检查..."
                 message_days = "error"
 
-            context += "账号: " + email + ", P: " + str(points) + ", 剩余: " + message_days + " | "
+            context += "账号: " + email + ", P: " + str(points) + ", 剩余: " + message_days + " | \n"
 
         # 推送内容
         context = f'Glados, 成功{success},失败{fail},重复{repeats}' + "\n" + context
@@ -287,9 +287,10 @@ if __name__ == '__main__':
     send("签到信息汇总/"+f"""
 ✈️ glados签到：
 {glados_msg}
--------------------------------------------
+---------------------------------------
 ☁️ 夸克签到：
 {msg}
--------------------------------------------
+---------------------------------------
 """.replace('/','-'))
+
 
