@@ -257,6 +257,15 @@ def checkin_glados():
     print("sckey:", sckey)
     print("cookies:", cookies)
     return context
+def checkin_iios():
+    return requests.post('https://vip.ioshashiqi.com/ashx/Honor.ashx',
+                         headers={
+                             "cookie":"ASP.NET_SessionId = eju3stvhz5tkllxd51qynqew;dt_cookie_user_name_remember = DTcms = 14492285081;dt_cookie_user_pwd_remember = DTcms = n1449228508;dt_cookie_remember = DTcms = 0",
+                             "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
+                         },
+                         data={'control': 'qiandao',
+                               'nowmonth':f'{datetime.datetime.now().month}'}).text,
+
 def send(msg):
     '''
     发送推送消息
@@ -291,6 +300,11 @@ if __name__ == '__main__':
 ☁️ 夸克签到：
 {msg}
 ---------------------------------------
+📱 IOS签到:
+checkin_iios()
+---------------------------------------
+
 """.replace('/','-'))
+
 
 
